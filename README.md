@@ -1,4 +1,4 @@
-
+LangSAT
 
 Lang2CNF
 Lang2CNF is the first part of the LangSAT project. It translates natural language statements into Conjunctive Normal Form (CNF), a crucial representation for solving logical and computational problems. This tool leverages APIs such as ChatGPT and other necessary libraries to process and transform inputs efficiently.
@@ -35,6 +35,44 @@ Set up your OpenAI API key for the ChatGPT integration, add the API key to your 
         
 Reload shell after
 
+Usage
 
+Run the Program
+
+To translate natural language to CNF:
  
-  
+	make run
+
+The lang2cnf.py script processes natural language statements and outputs their CNF representations.
+
+Sample Usage
+
+Running the Program, to translate a natural language statement into CNF:
+
+	python lang2cnf.py "The circus has a ferris wheel or the circus has a rollercoaster. The circus does not have a carousel if and only if the circus has a ferris wheel and the circus has a rollercoaster. If the circus does not have a carousel, then the circus has a trapese. The circus does not have a trapese and the circus has a rollercoaster."
+
+CNF Output: 
+
+Sentence #1: The circus has a ferris wheel or the circus has a rollercoaster.
+Model Output: Or(P, Q)
+Parsed Expression: P | Q
+CNF Expression: P | Q
+-----
+Sentence #2: The circus does not have a carousel if and only if the circus has a ferris wheel and the circus has a rollercoaster.
+Model Output: Equivalent(Not(R), And(P, Q))
+Parsed Expression: Equivalent(~R, P & Q)
+CNF Expression: (P | R) & (Q | R) & (~P | ~Q | ~R)
+-----
+Sentence #3: If the circus does not have a carousel, then the circus has a trapese.
+Model Output: Implies(Not(R), S)
+Parsed Expression: Implies(~R, S)
+CNF Expression: R | S
+-----
+Sentence #4: The circus does not have a trapese and the circus has a rollercoaster.
+Model Output: And(Not(S), Q)
+Parsed Expression: Q & ~S
+CNF Expression: Q & ~S
+-----
+
+Final CNF Expression (Simplified):
+Q & R & ~P & ~S
