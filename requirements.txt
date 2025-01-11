@@ -1,4 +1,4 @@
-nltk
-openai
-lark-parser
-sympy
+nltk>=3.8.1       # For natural language processing
+openai>=0.27.8    # OpenAI's ChatGPT API
+lark-parser>=0.12.0 # For parsing and syntax trees
+sympy>=1.12       # For symbolic mathematics
