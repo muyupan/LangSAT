@@ -1,0 +1,4 @@
+nltk
+openai
+lark-parser
+sympy
